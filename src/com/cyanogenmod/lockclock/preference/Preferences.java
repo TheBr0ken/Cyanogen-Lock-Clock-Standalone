@@ -30,17 +30,19 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.cyanogenmod.lockclock.R;
-import com.cyanogenmod.lockclock.misc.Constants;
 
 import java.util.List;
 
 public class Preferences extends PreferenceActivity {
+	
+	private	List<Header> headers;
 
     @Override
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.preferences_headers, target);
 
         updateHeaders(target);
+        headers = target;
     }
 
     private void updateHeaders(List<Header> headers) {
@@ -56,7 +58,7 @@ public class Preferences extends PreferenceActivity {
         if (adapter == null) {
             super.setListAdapter(null);
         } else {
-            super.setListAdapter(new HeaderAdapter(this, getHeaders()));
+            super.setListAdapter(new HeaderAdapter(this, headers));
         }
     }
 
@@ -160,9 +162,9 @@ public class Preferences extends PreferenceActivity {
                                 false);
                         holder.icon = (ImageView) view.findViewById(R.id.icon);
                         holder.title = (TextView)
-                                view.findViewById(com.android.internal.R.id.title);
+                                view.findViewById(R.id.title);
                         holder.summary = (TextView)
-                                view.findViewById(com.android.internal.R.id.summary);
+                                view.findViewById(R.id.summary);
                         break;
                 }
                 view.setTag(holder);
