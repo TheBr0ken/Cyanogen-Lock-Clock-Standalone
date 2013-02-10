@@ -16,6 +16,11 @@
 
 package com.cyanogenmod.lockclock.weather;
 
+import java.io.IOException;
+import java.util.Date;
+
+import org.w3c.dom.Document;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -29,17 +34,11 @@ import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.cyanogenmod.lockclock.ClockWidgetProvider;
 import com.cyanogenmod.lockclock.misc.Constants;
 import com.cyanogenmod.lockclock.misc.Preferences;
-
-import java.io.IOException;
-import java.util.Date;
-
-import org.w3c.dom.Document;
 
 public class WeatherUpdateService extends Service {
     private static final String TAG = "WeatherUpdateService";
