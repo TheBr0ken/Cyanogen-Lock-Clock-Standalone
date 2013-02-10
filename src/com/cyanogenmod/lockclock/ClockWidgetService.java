@@ -409,19 +409,22 @@ public class ClockWidgetService extends IntentService {
 		// Register an onClickListener on Calendar if it contains any events,
 		// starting the Calendar app
 		if (hasEvents) {
-			PendingIntent pi = PendingIntent.getActivity(this, 0, buildCalendarIntent(),
-					PendingIntent.FLAG_UPDATE_CURRENT);
+			PendingIntent pi = PendingIntent.getActivity(this, 0,
+					buildCalendarIntent(), PendingIntent.FLAG_UPDATE_CURRENT);
 			calendarViews.setOnClickPendingIntent(R.id.calendar_panel, pi);
 		}
 		return hasEvents;
 	}
 
+	/**
+	 * Creates an intent that starts the calendar app at the current time. Uses
+	 * CalendarProvider to do it.
+	 */
 	private Intent buildCalendarIntent() {
 		Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
 		builder.appendPath("time");
 		ContentUris.appendId(builder, System.currentTimeMillis());
-		Intent intent = new Intent(Intent.ACTION_VIEW).setData(builder
-				.build());
+		Intent intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
 		return intent;
 	}
 
